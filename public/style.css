@@ -1,0 +1,79 @@
+body {
+  margin: 0;
+  padding: 0;
+  background: #d6eaf7;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+  font-family: sans-serif;
+  overflow: hidden;
+}
+
+.book-container {
+  perspective: 2000px;
+  width: 90%;
+  max-width: 550px;
+  aspect-ratio: 550 / 800; /* maintain correct shape on all screens */
+  position: relative;
+}
+
+.book {
+  width: 100%;
+  height: 100%;
+  position: relative;
+}
+
+.page {
+  width: 100%;
+  height: 100%;
+  position: absolute;
+  transform-style: preserve-3d;
+  transition: transform 1s ease;
+  transform-origin: left;
+  cursor: pointer;
+}
+
+.page img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+  border-radius: 10px;
+}
+
+.front {
+  width: 100%;
+  height: 100%;
+  position: absolute;
+  backface-visibility: hidden;
+  border-radius: 10px;
+  overflow: hidden;
+}
+
+.front img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+  border-radius: 10px;
+}
+
+/* Page stacking order */
+#page1 { z-index: 3; }
+#page2 { z-index: 2; }
+#page3 { z-index: 1; }
+
+/* Flip style */
+.flipped {
+  transform: rotateY(-180deg);
+  z-index: 0 !important;
+}
+
+/* Media query for very small screens */
+@media (max-width: 480px) {
+  .book-container {
+    max-width: 95%;
+    aspect-ratio: 550 / 800;
+  }
+}
